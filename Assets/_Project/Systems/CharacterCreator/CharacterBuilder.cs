@@ -34,7 +34,7 @@ public class CharacterBuilder : MonoBehaviour
         EventManager.Instance.UnsubscribeFromEvent(characterCustomisationUI.saveEventName, SaveCharacter);
     }
 
-    private GameObject BuildCharacter()
+    private void BuildCharacter()
     {
         if (character != null)
         {
@@ -42,7 +42,7 @@ public class CharacterBuilder : MonoBehaviour
         }
 
         Debug.Log($"Building character with {partsToFind.Length} parts.");
-        character = Instantiate(prefab, new Vector3 ((float)Random.Range(-5f, 5f), 0, Random.Range(-5f, 5f)), transform.rotation); // instantiate off screen
+        character = Instantiate(prefab, new Vector3 (0, -10, 0), transform.rotation); // instantiate off screen
         
         foreach (CharacterPart part in partsToFind)
         {
@@ -69,11 +69,16 @@ public class CharacterBuilder : MonoBehaviour
         }
 
         Debug.Log($"Character {character.name} built.", character);
+    }
+
+    public GameObject GetCreatedCharacter()
+    {
         return character;
     }
 
     private void SaveCharacter()
     {
         BuildCharacter();
+        character.SetActive(false);
     }
 }
