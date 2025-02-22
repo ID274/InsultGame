@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChangerScript : MonoBehaviour
 {
-    public CharacterPart part;
+    [SerializeField] public CharacterPart part { get; private set; }
 
     [SerializeField] private TextMeshProUGUI countText;
 
@@ -14,7 +14,7 @@ public class ChangerScript : MonoBehaviour
     [SerializeField] private bool canBeEmpty;
     private int currentOptionIndex = 0;
 
-    [SerializeField] private GameObject selectedObject;
+    public GameObject selectedObject;
 
     private CharacterCustomisationUI characterCustomisationUI;
 
