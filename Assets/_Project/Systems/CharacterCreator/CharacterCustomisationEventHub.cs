@@ -1,13 +1,13 @@
 using UnityEngine;
+using System;
+using System.Collections;
 
-public class CharacterCustomisationUI : MonoBehaviour
+public class CharacterCustomisationEventHub : MonoBehaviour
 {
-    public string randomiseEventName { get; private set; } = "randomisecharacter";
-    public string resetEventName { get; private set; } = "resetcharacter";
-
-    public string saveEventName { get; private set; } = "savecharacter";
-
-    public string loadEventName { get; private set; } = "loadcharacter";
+    public const string randomiseEventName = "randomisecharacter";
+    public const string resetEventName = "resetcharacter";
+    public const string saveEventName = "savecharacter";
+    public const string loadEventName = "loadcharacter";
 
     [SerializeField] private GameObject characterBuilderPrefab;
     private CharacterBuilder characterBuilder;
@@ -22,12 +22,12 @@ public class CharacterCustomisationUI : MonoBehaviour
 
     public void RandomiseCharacter()
     {
-        EventManager.Instance.InvokeEvent("randomisecharacter");
+        EventManager.Instance.InvokeEvent(randomiseEventName);
     }
 
     public void ResetCharacter()
     {
-        EventManager.Instance.InvokeEvent("resetcharacter");
+        EventManager.Instance.InvokeEvent(resetEventName);
     }
 
     public void SaveCharacter()
@@ -38,11 +38,11 @@ public class CharacterCustomisationUI : MonoBehaviour
             characterBuilder = Instantiate(characterBuilderPrefab).GetComponent<CharacterBuilder>();
             Debug.Log($"CharacterBuilder prefab instantiated.");
         }
-        EventManager.Instance.InvokeEvent("savecharacter");
+        EventManager.Instance.InvokeEvent(saveEventName);
     }
 
     public void LoadCharacter()
     {
-        EventManager.Instance.InvokeEvent("loadcharacter");
+        EventManager.Instance.InvokeEvent(loadEventName);
     }
 }

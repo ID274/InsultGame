@@ -16,27 +16,20 @@ public class ChangerScript : MonoBehaviour
 
     public GameObject selectedObject;
 
-    private CharacterCustomisationUI characterCustomisationUI;
-
     private bool startPassed = false;
-
-    private void Awake()
-    {
-        characterCustomisationUI = FindObjectOfType<CharacterCustomisationUI>();
-    }
 
     private void OnEnable()
     {
         if (startPassed)
         {
-            EventManager.Instance.SubscribeToEvent(characterCustomisationUI.randomiseEventName, RandomiseChanger);
-            EventManager.Instance.SubscribeToEvent(characterCustomisationUI.resetEventName, ResetChanger);
+            EventManager.Instance.SubscribeToEvent(CharacterCustomisationEventHub.randomiseEventName, RandomiseChanger);
+            EventManager.Instance.SubscribeToEvent(CharacterCustomisationEventHub.resetEventName, ResetChanger);
         }
     }
     private void OnDisable()
     {
-        EventManager.Instance.UnsubscribeFromEvent(characterCustomisationUI.randomiseEventName, RandomiseChanger);
-        EventManager.Instance.UnsubscribeFromEvent(characterCustomisationUI.resetEventName, ResetChanger);
+        EventManager.Instance.UnsubscribeFromEvent(CharacterCustomisationEventHub.randomiseEventName, RandomiseChanger);
+        EventManager.Instance.UnsubscribeFromEvent(CharacterCustomisationEventHub.resetEventName, ResetChanger);
     }
 
     private void Start()

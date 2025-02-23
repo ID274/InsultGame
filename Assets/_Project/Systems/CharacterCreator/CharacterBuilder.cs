@@ -9,8 +9,6 @@ public class CharacterBuilder : MonoBehaviour
 
     [SerializeField] private CharacterPart[] partsToFind;
 
-    private CharacterCustomisationUI characterCustomisationUI;
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -21,17 +19,15 @@ public class CharacterBuilder : MonoBehaviour
         {
             Instance = this;
         }
-
-        characterCustomisationUI = FindObjectOfType<CharacterCustomisationUI>();
     }
 
     private void OnEnable()
     {
-        EventManager.Instance.SubscribeToEvent(characterCustomisationUI.saveEventName, SaveCharacter);
+        EventManager.Instance.SubscribeToEvent(CharacterCustomisationEventHub.saveEventName, SaveCharacter);
     }
     private void OnDisable()
     {
-        EventManager.Instance.UnsubscribeFromEvent(characterCustomisationUI.saveEventName, SaveCharacter);
+        EventManager.Instance.UnsubscribeFromEvent(CharacterCustomisationEventHub.saveEventName, SaveCharacter);
     }
 
     private void BuildCharacter()

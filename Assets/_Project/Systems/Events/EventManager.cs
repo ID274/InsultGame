@@ -13,6 +13,8 @@ public class EventManager : MonoBehaviour
 
     private Dictionary<string, CustomEvent> events = new Dictionary<string, CustomEvent>();
 
+    [SerializeField] private bool createEventIfMissing = true;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,6 +50,13 @@ public class EventManager : MonoBehaviour
         else
         {
             Debug.LogWarning("Event with name " + eventName + " was not found.");
+            if (createEventIfMissing)
+            {
+                Debug.Log("Creating a new one to allow subscription.");
+                CustomEvent newEvent = new CustomEvent();
+                events.Add(eventName, newEvent);
+                newEvent.OnEventTriggered += action;
+            }
         }
     }
 
