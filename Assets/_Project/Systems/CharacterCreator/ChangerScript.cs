@@ -65,6 +65,9 @@ public class ChangerScript : MonoBehaviour
         selectedObject = optionObjects[currentOptionIndex];
     }
 
+    // Example of method overloading and polymorphism. Here we have two methods that essentially do the same thing, but slightly differently. It makes sense for
+    // these to share a name as they are a means-to-an-end.
+
     public void Change(bool left) // change by 1 to left or right
     {
         if (left)
