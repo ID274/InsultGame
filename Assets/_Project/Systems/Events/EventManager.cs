@@ -14,6 +14,7 @@ public class EventManager : MonoBehaviour
     private Dictionary<string, CustomEvent> events = new Dictionary<string, CustomEvent>();
 
     [SerializeField] private bool createEventIfMissing = true;
+    [SerializeField] private bool dontDestroyOnLoad = true;
 
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class EventManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+
+        if (dontDestroyOnLoad)
+        {
+            DontDestroyOnLoad(gameObject);
         }
     }
 
