@@ -8,8 +8,6 @@ public class MySceneManager : MonoBehaviour
 
     [SerializeField] private bool dontDestroyOnLoad = true;
 
-    private bool startPassed = false;
-
     public const string sceneChangeEventName = "sceneChangedEvent";
 
     private void Awake()
@@ -32,7 +30,6 @@ public class MySceneManager : MonoBehaviour
     private void Start()
     {
         EventManager.Instance.AddEvent(sceneChangeEventName, new CustomEvent());
-        startPassed = true;
     }
 
 
